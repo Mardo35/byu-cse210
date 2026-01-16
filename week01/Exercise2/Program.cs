@@ -18,7 +18,7 @@ partial class Program
         // Console.Write($"Your grade is {grade}");
 
         // Variable Letter to hold the grade
-        string letter = " ";
+        string letter = "";
 
         if ( grade >= 90 )
         {
@@ -57,29 +57,20 @@ partial class Program
 
         // Console.WriteLine($"Your grade is {letter}");
 
-        string sign = " ";
-        int remainder = grade % 10;
-        // Console.WriteLine(remainder);
-        if (grade >= 60 && grade < 100)
+        string sign = "";
+        int lastDigit = grade % 10;
+        if (letter != "F" && grade < 100)
         {
-            if(remainder >= 7)
-            {
+            if (lastDigit >= 7)
                 sign = "+";
-            }
-            else if (remainder < 3)
-            {
+            else if (lastDigit < 3)
                 sign = "-";
-            }
         }
-        
-        //  no A+, F+ or F-
+
+        // No A+
         if (letter == "A" && sign == "+")
         {
-            sign = " ";
-        }
-        if(letter == "F")
-        {
-            sign = " ";
+            sign = "";
         }
 
 
