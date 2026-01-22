@@ -1,6 +1,6 @@
 using System;
 
-partial class Program
+class Program
 {
     static void Main(string[] args)
     {
@@ -14,67 +14,55 @@ partial class Program
         Console.Write("Please, enter your grade percentage: ");
         string valueFromUser = Console.ReadLine();
 
-        int grade = int.Parse(valueFromUser);
-        // Console.Write($"Your grade is {grade}");
+        // Input validation
+        if (!int.TryParse(valueFromUser, out int grade))
+        {
+            Console.WriteLine("Invalid input. Please enter a number.");
+            return;
+        }
+
+        // Ensure grade is within valid range (0-100)
+        if (grade < 0 || grade > 100)
+        {
+            Console.WriteLine("Grade must be between 0 and 100.");
+            return;
+        }
 
         // Variable Letter to hold the grade
         string letter = "";
 
-        if ( grade >= 90 )
+        if (grade >= 90)
         {
-            // Console.WriteLine("Your grade is A");
             letter = "A";
         }
-        else if ( grade >= 80)
+        else if (grade >= 80)
         {
-            // Console.WriteLine("Your grade is B");
             letter = "B";
-
         }
-        else if (grade >= 70 )
+        else if (grade >= 70)
         {
-            // Console.WriteLine("Your grade is C");
             letter = "C";
         }
-        else if ( grade >= 60)
+        else if (grade >= 60)
         {
-            // Console.WriteLine("Your grade is D");
             letter = "D";
         }
         else 
         {
-            // Console.WriteLine("Your grade is F");
             letter = "F";
-        } 
-        if(grade >= 70)
+        }
+
+        // Display grade first
+        Console.WriteLine($"Your grade is: {letter}");
+
+        // Then pass/fail message
+        if (grade >= 70)
         {
-            Console.WriteLine("You passed the course");
+            Console.WriteLine("You passed the course!");
         }
         else
         {
-            Console.WriteLine("You will get it next time");
+            Console.WriteLine("You will get it next time. Keep trying!");
         }
-
-        // Console.WriteLine($"Your grade is {letter}");
-
-        string sign = "";
-        int lastDigit = grade % 10;
-        if (letter != "F" && grade < 100)
-        {
-            if (lastDigit >= 7)
-                sign = "+";
-            else if (lastDigit < 3)
-                sign = "-";
-        }
-
-        // No A+
-        if (letter == "A" && sign == "+")
-        {
-            sign = "";
-        }
-
-
-        //  Final test
-        Console.WriteLine($"Your grade is {letter}{sign}");
     }
 }
